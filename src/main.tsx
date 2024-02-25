@@ -9,7 +9,7 @@ import { ToastContainer } from 'react-toastify'
 import { setActiveUsers } from './features/users/usersSlice.ts'
 import { io } from 'socket.io-client'
 
-export const socket = io('http://localhost:3500')
+export const socket = io('https://swifttweetapi.onrender.com')
 
 socket.on('activeUsers', (activeUsers) => {
   store.dispatch(setActiveUsers(activeUsers))
