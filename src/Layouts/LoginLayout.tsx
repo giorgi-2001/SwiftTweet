@@ -13,14 +13,14 @@ const LoginLayout = () => {
     <>
         <main className="h-screen flex flex-col">
             <section className="grow flex justify-center items-center p-4">
-                <div className="bg-zinc-100 flex gap-8 flex-col-reverse sm:flex-row p-4 sm:p-8 rounded-lg">
+                <div className="bg-zinc-100 flex gap-8 flex-col sm:flex-row p-4 sm:p-8 rounded-lg">
                     <aside>
                         <img className="w-full sm:w-96 mx-auto" src={entry} alt="entry-img" />
                         <article>
                             <h1 aria-label="SwiftTweet" className="mt-4">
                                 <img className="w-3/4 sm:w-60 mx-auto" src={logo} alt="logo" />
                             </h1>
-                            <p className="font-bold text-center text-zinc-600 tracking-widest">Soar into the Swift coversations!</p>
+                            <p className="font-bold text-center text-zinc-600 tracking-widest">Soar into the Swift conversations!</p>
                         </article>
                     </aside>
                     <section className="flex flex-col justify-center">
