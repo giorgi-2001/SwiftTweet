@@ -1,4 +1,4 @@
-import { Link, NavLink, useParams } from "react-router-dom"
+import { Link, NavLink } from "react-router-dom"
 import SearchUsers from "../features/users/SearchUsers"
 import logo from "../assets/logo.png"
 import { useSelector } from "react-redux"
@@ -11,9 +11,6 @@ import { fill } from "@cloudinary/url-gen/actions/resize"
 import Notifications from "../features/notifications/Notifications"
 
 const Header = () => {
-
-    const { chatId } = useParams()
-    const isChatOpen = Boolean(chatId)
 
     const user = useSelector(selectUser)
     
