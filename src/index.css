@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+#root {
+    height: 100vh;
+}
+
+.login-link.active {
+    background-color: rgb(228, 228, 231);
+    position: relative;
+}
+
+.login-link.active::before, .login-link.active::after{
+    --size: 0.5rem;
+    --radius: 0.5rem;
+
+    content: "";
+    width: var(--size);
+    height: var(--size);
+    background: transparent;
+    position: absolute;
+    display: block;
+    bottom: 0;
+}
+
+.login-link.active::before {
+    left: calc(var(--size) * -1);
+    border-radius: 0 0 100vh 0;
+    box-shadow: var(--radius) var(--radius) 0 var(--radius)  rgb(228, 228, 231);
+}
+
+.login-link.active::after {
+    right: calc(var(--size) * -1);
+    border-radius: 0 0 0 100vh;
+    box-shadow: calc(var(--radius) * -1) var(--radius) 0 var(--radius)  rgb(228, 228, 231);
+}

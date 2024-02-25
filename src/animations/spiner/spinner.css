@@ -1,0 +1,23 @@
+.spinner {
+    border-width: 10px;
+    border-style: solid;
+    border-bottom-width: 2px;
+    border-right-color: transparent;
+    border-left-color: transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    50% {
+        transform: rotateZ(180deg);
+        border-top-width: 2px;
+        border-bottom-width: 10px;
+    }
+
+    100% {
+        transform: rotateZ(360deg);
+        border-top-width: 10px;
+        border-bottom-width: 2px;
+    }
+}
