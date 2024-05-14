@@ -29,7 +29,7 @@ const router = createBrowserRouter(
       <Route element={<RequireAuth />}>
         <Route element={<MainLayout />}>
           <Route path="home" element={<Home />}>
-            <Route path=":chatId" element={ <MessageList />} />
+            <Route path=":chatId" element={<MessageList />} />
           </Route>
           <Route path="profile" element={<Profile />} />
         </Route>

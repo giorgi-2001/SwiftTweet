@@ -9,8 +9,8 @@ export const store = configureStore({
         'auth': authReducer,
         'activeUsers': usersReducer
     },
-    
-    middleware: getDefaultMiddleware => 
+
+    middleware: getDefaultMiddleware =>
         getDefaultMiddleware().concat(apiSlice.middleware)
 })
 

@@ -3,7 +3,7 @@ import { RootState } from "../store"
 import { setCredentials, logout } from "../../features/auth/authSlice"
 
 
-const baseQuery:  BaseQueryFn<
+const baseQuery: BaseQueryFn<
     string | FetchArgs,
     unknown,
     FetchBaseQueryError
@@ -14,7 +14,7 @@ const baseQuery:  BaseQueryFn<
         const myState = getState() as RootState
         const token = myState.auth.token
 
-        if(token) {
+        if (token) {
             headers.set('Authorization', `Bearer ${token}`)
         }
         return headers
@@ -29,25 +29,29 @@ const baseQueryWithReauth: BaseQueryFn<
 > = async (
     args, api, extraOptions
 ) => {
-    let result = await baseQuery(args, api, extraOptions)
+        let result = await baseQuery(args, api, extraOptions)
 
-    const error = result.error
+        const error = result.error
 
-    if (error && 'originalStatus' in error && error.originalStatus === 403) {
+        if (error && 'originalStatus' in error && error.originalStatus === 403) {
 
-        const refreshResult = await baseQuery('/auth/refresh', api, extraOptions)
-        
-        if (refreshResult.data) {
-            const data = refreshResult.data
-            api.dispatch(setCredentials(data))
+            const refreshResult = await baseQuery({
+                url: "/auth/refresh",
+                method: "POST",
+                body: { token: localStorage.getItem("refresh") }
+            }, api, extraOptions)
 
-            result = await baseQuery(args, api, extraOptions)
-        } else {
-            api.dispatch(logout())
+            if (refreshResult.data) {
+                const data = refreshResult.data
+                api.dispatch(setCredentials(data))
+
+                result = await baseQuery(args, api, extraOptions)
+            } else {
+                api.dispatch(logout())
+            }
         }
+        return result
     }
-    return result
-}
 
 
 export const apiSlice = createApi({
@@ -55,5 +59,5 @@ export const apiSlice = createApi({
     baseQuery: baseQueryWithReauth,
     endpoints: () => ({}),
     tagTypes: ['chat', 'messages']
-}) 
+})
 

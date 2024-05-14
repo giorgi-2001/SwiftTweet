@@ -35,10 +35,11 @@ const authSlice = createSlice({
 
             state.user = null
             state.token = ''
+            localStorage.removeItem("refresh")
         },
 
         setAvatar: (state, action) => {
-            if(state.user) {
+            if (state.user) {
                 state.user.avatar = action.payload
             }
         }
